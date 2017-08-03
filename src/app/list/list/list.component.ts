@@ -1,31 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 
-const Items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
 const template = `
 <h5>Hey Dawg!</h5>
-<virtual-scroll 
-[items]="myItems" 
-(update)="scrolledItems = $event"
-[childHeight]="18"
-[childWidth]="40"
->
-  <div *ngFor="let item of scrolledItems" class="hey-dawg">{{item}}</div>
-</virtual-scroll>
+<div class="vs-container">
+  <virtual-scroll 
+  [items]="myItems" 
+  (update)="scrolledItems = $event"
+  (change)="indices = $event">
+   <div *ngFor="let item of scrolledItems" class="hey-dawg">{{item}}</div>
+  </virtual-scroll>
+</div>
 `;
 
 @Component({
   selector: 'af-list',
   template,
-  styles: []
+  styleUrls: ['./list.component.css'],
 })
 export class ListComponent implements OnInit {
+  items = [];
+  myItems = [];
 
-  myItems = Items;
-
-  constructor() { }
+  constructor() {
+    for (let i = 1; i <= 10000; i++) {
+      this.items.push(i);
+    }
+  }
 
   ngOnInit() {
+    this.myItems = this.items;
   }
 
 }
