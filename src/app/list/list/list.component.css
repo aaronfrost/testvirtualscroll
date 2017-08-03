@@ -1,0 +1,12 @@
+.vs-container {
+  border: 1px solid;
+  width: 200px;
+  height: 400px;
+}
+
+virtual-scroll {
+  overflow: hidden;
+  overflow-y: auto;
+  height: 100%;
+  display: block;
+}
